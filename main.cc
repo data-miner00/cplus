@@ -85,6 +85,13 @@ void dynamic_arrays() {
     int* safe_dynamic_array { new(std::nothrow) int[size]{} }; // All initialized to 0
     int* safe_initialized_dynamic_array { new(std::nothrow) int[size]{1, 2, 3, 4, 5} };
 
+    if (safe_initialized_dynamic_array) {
+        for (size_t i {}; i < size; ++i) {
+            // Print using array bracket operator or pointer arithmetic
+            std::cout << "Value: " << safe_initialized_dynamic_array[i] << '-' << *(safe_initialized_dynamic_array + i) << '\n';
+        }
+    }
+
     delete[] dynamic_array;
     dynamic_array = nullptr;
 
@@ -93,6 +100,26 @@ void dynamic_arrays() {
 
     delete[] safe_initialized_dynamic_array;
     safe_initialized_dynamic_array = nullptr;
+}
+
+void references() {
+    int value = 42;
+    int& ref = value; // Reference to value
+    int* const ref2 = &value; // Pointer to value, same as using a reference
+
+    std::cout << "Value: " << value << '\n';
+    std::cout << "Reference: " << ref << '\n';
+    std::cout << "Const Ptr: " << *ref2 << '\n';
+
+    ref = 100; // Changing the reference also changes the original value
+    std::cout << "New Value: " << value << '\n';
+
+    *ref2 = 200;
+    std::cout << "New Value after pointer change: " << value << '\n';
+
+    // Immutable references, cannot be updated or reassigned
+    const int& const_ref = value;
+    const int* const const_ptr = &value;
 }
 
 int main(int argc, char** argv) {
@@ -141,6 +168,7 @@ int main(int argc, char** argv) {
     playing_with_pointers();
     allocate_value_on_heap();
     dynamic_arrays();
+    references();
 
     return 0;
 }
