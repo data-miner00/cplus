@@ -1,7 +1,9 @@
+#include <ios>
 #include <iostream>
 #include <cstdlib>
 #include <string>
 #include <limits>
+#include <cctype>
 #include "bubble_sort.h"
 
 typedef std::string text_t;
@@ -122,6 +124,68 @@ void references() {
     const int* const const_ptr = &value;
 }
 
+void string_functions() {
+    std::string str = "Hello, World!";
+    std::cout << std::boolalpha;
+    std::cout << "String length: " << str.length() << '\n';
+    std::cout << "First character: " << str[0] << '\n';
+    std::cout << "Substring (0, 5): " << str.substr(0, 5) << '\n';
+    std::cout << "Find 'World': " << str.find("World") << '\n';
+    std::cout << "Replace 'World' with 'C++': " << str.replace(str.find("World"), 5, "C++") << '\n';
+    std::cout << "Is 'C' alphanumeric? " << std::isalnum('C') << '\n';
+    std::cout << "Is ' ' blank? " << std::isblank(' ') << '\n';
+    std::cout << "Is '1' a digit? " << std::isdigit('1') << '\n';
+    std::cout << "Is 'A' cntrl? " << std::iscntrl('A') << '\n';
+    std::cout << std::noboolalpha;
+}
+
+void cstrings() {
+    const char cstr[] = "Hello, C-style string!";
+
+    // CString decayed into pointer
+    const char* decayed_cstr = "Hello, decayed C-style string!";
+    std::cout << "C-style string: " << cstr << '\n';
+
+    // Using strlen to get the length of a C-style string
+    size_t length = std::strlen(cstr);
+    std::cout << "Length of C-style string: " << length << '\n';
+
+    // Using strcpy to copy a C-style string
+    char buffer[50];
+    strcpy_s(buffer, cstr);
+    std::cout << "Copied C-style string: " << buffer << '\n';
+
+    // Using strcat to concatenate C-style strings
+    strcat_s(buffer, " How are you?");
+    std::cout << "Concatenated C-style string: " << buffer << '\n';
+
+    // Count occurrence of character
+    char target = 'A';
+    const char* result = decayed_cstr;
+    int iterations{};
+
+    while ((result = std::strchr(result, target)) != nullptr) {
+        std::cout << "Found '" << target << "' at position: " << (result - decayed_cstr) << '\n';
+        result++; // Move to the next character
+        iterations++;
+    }
+
+    // Find last occurrence
+    const char* output = std::strrchr(decayed_cstr, target);
+    if (output) {
+        std::cout << "Last occurrence of '" << target << "' at position: " << (output - decayed_cstr) << '\n';
+    } else {
+        std::cout << "Character '" << target << "' not found in the string.\n";
+    }
+
+    // Concat string
+    char dest[50] = "Hello, ";
+    char src[50] = "World!";
+
+    std::cout << strcat_s(dest, src) << '\n';
+    std::cout << "Length of concatenated string: " << std::strlen(dest) << '\n';
+}
+
 int main(int argc, char** argv) {
     text_t hello = "hello, world";
     std::cout << hello << std::endl;
@@ -169,6 +233,8 @@ int main(int argc, char** argv) {
     allocate_value_on_heap();
     dynamic_arrays();
     references();
+    string_functions();
+    cstrings();
 
     return 0;
 }
