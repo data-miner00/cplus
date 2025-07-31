@@ -186,6 +186,29 @@ void cstrings() {
     std::cout << "Length of concatenated string: " << std::strlen(dest) << '\n';
 }
 
+void cpp_string() {
+    std::string cpp_str = "Hello, C++ string!";
+    std::cout << "C++ string: " << cpp_str << '\n';
+
+    // Using append to add to a C++ string
+    cpp_str.append(" How are you?");
+    std::cout << "Appended C++ string: " << cpp_str << '\n';
+
+    // Using find to locate a substring
+    size_t pos = cpp_str.find("C++");
+    if (pos != std::string::npos) {
+        std::cout << "'C++' found at position: " << pos << '\n';
+    } else {
+        std::cout << "'C++' not found in the string.\n";
+    }
+
+    // Initialize string
+    std::string repeat_str = std::string(5, 'A'); // Repeat 'A' 5 times
+
+    // Initialize part of literal string
+    std::string part_str { "Hello, World!", 5 };
+}
+
 int main(int argc, char** argv) {
     text_t hello = "hello, world";
     std::cout << hello << std::endl;
@@ -235,6 +258,7 @@ int main(int argc, char** argv) {
     references();
     string_functions();
     cstrings();
+    cpp_string();
 
     return 0;
 }
