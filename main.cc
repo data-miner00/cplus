@@ -18,6 +18,13 @@ constexpr int get_value() {
     return 42;
 }
 
+/*
+Need C++ 17
+std::string_view getSelf(std::string_view value) {
+    return value;
+}
+*/
+
 void play_with_limits() {
     std::cout << "int min: " << std::numeric_limits<int>::min() << '\n';
     std::cout << "int max: " << std::numeric_limits<int>::max() << '\n';
@@ -259,6 +266,32 @@ int main(int argc, char** argv) {
     string_functions();
     cstrings();
     cpp_string();
+
+    [](){
+        std::cout << "Hello from lambda function!" << '\n';
+    }();
+
+    [](std::string name){
+        std::cout << "Hello " + name + " from lambda function!" << '\n';
+    }("John");
+
+    auto result = []() -> int {
+        int lucky_number = 7;
+        std::cout << "Your lucky number is " << lucky_number << '\n';
+        return lucky_number;
+    }();
+
+    // Capture list
+    int a{5}, b{10};
+
+    [a,&b]() mutable {
+        std::cout << "a: " << a << ", b: " << b << '\n';
+        a += 10; // This will not change the original a
+        b += 20; // This will not change the original b
+        std::cout << "Modified a: " << a << ", Modified b: " << b << '\n';
+    }();
+
+    std::cout << "a: " << a << ", b: " << b << '\n';
 
     return 0;
 }
