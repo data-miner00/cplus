@@ -293,5 +293,13 @@ int main(int argc, char** argv) {
 
     std::cout << "a: " << a << ", b: " << b << '\n';
 
+    [=]() {
+        std::cout << "Captured by value!" << '\n';
+    }();
+
+    [&]() {
+        std::cout << "Captured by reference!" << '\n';
+    }();
+
     return 0;
 }
