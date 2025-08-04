@@ -10,8 +10,24 @@ typedef std::string text_t;
 using number_t = int;
 
 template <typename T>
-T getSelf(T value) {
-    return value;
+T getFirst(T first, T second) {
+    return first;
+}
+
+template <typename T>
+const T& mimimum(const T& a, const T& b) {
+    return (a < b) ? a : b;
+}
+
+// Template specialization
+template <typename T> T maximum(T a, T b);
+template <typename T> T maximum(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+template <>
+const char* maximum<const char*>(const char* a, const char* b) {
+    return (std::strcmp(a, b) > 0) ? a : b;
 }
 
 constexpr int get_value() {
@@ -240,7 +256,11 @@ int main(int argc, char** argv) {
     delete persist;
 
     // template usage
-    std::cout << getSelf(53) << '\n';
+    std::cout << "first: " << getFirst(53, 51) << '\n';
+    std::cout << "first: " << getFirst("hello", "world") << '\n';
+    std::cout << "first: " << getFirst<double>(23, 3.14) << '\n';
+    std::cout << "minimum: " << mimimum(10, 20) << '\n';
+    std::cout << "maximum: " << maximum("hello", "world") << '\n';
 
     int int_default {};
     std::cout << int_default << '\n';
