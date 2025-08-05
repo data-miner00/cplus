@@ -19,9 +19,35 @@ const T& mimimum(const T& a, const T& b) {
     return (a < b) ? a : b;
 }
 
+/*
+Need C++ 20
+template <typename T>
+requires std::integral<T>
+T add(T a, T b) {
+    return a + b;
+}
+
+template <std::integral T>
+T add(T a, T b) {
+    return a + b;
+}
+
+template<typename T>
+T add(T a, T b) requires std::integral<T> {
+    return a + b;
+}
+
+auto add(std::integral auto a, std::integral auto b) {
+    return a + b;
+}
+*/
+
 // Template specialization
 template <typename T> T maximum(T a, T b);
 template <typename T> T maximum(T a, T b) {
+    // concepts
+    // If the requirement is not met, the code will not compile
+    static_assert(std::is_integral<T>::value || std::is_floating_point<T>::value, "Type must be integral or a floating point type");
     return (a > b) ? a : b;
 }
 
@@ -260,6 +286,8 @@ int main(int argc, char** argv) {
     std::cout << "first: " << getFirst("hello", "world") << '\n';
     std::cout << "first: " << getFirst<double>(23, 3.14) << '\n';
     std::cout << "minimum: " << mimimum(10, 20) << '\n';
+    std::cout << "maximum: " << maximum(30, 21) << '\n';
+    std::cout << "maximum: " << maximum('a', 'c') << '\n';
     std::cout << "maximum: " << maximum("hello", "world") << '\n';
 
     int int_default {};
