@@ -24,7 +24,7 @@ add_executable(
   ${PROJECT_NAME}
 
   # Source of executable
-  main.cc bubble_sort.cc
+  main.cc bubble_sort.cc person.cc
 )
 
 # First boolean variable indicates that the recently called

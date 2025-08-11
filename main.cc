@@ -5,6 +5,7 @@
 #include <limits>
 #include <cctype>
 #include "bubble_sort.h"
+#include "person.h"
 
 typedef std::string text_t;
 using number_t = int;
@@ -258,6 +259,14 @@ void cpp_string() {
     std::string part_str { "Hello, World!", 5 };
 }
 
+void play_with_class() {
+    Person p1("John", 30);
+    Person p2{ "Jane", 25 };
+
+    std::cout << "Person 1: " << p1.getName() << ", Age: " << p1.getAge() << '\n';
+    std::cout << "Person 2: " << p2.getName() << ", Age: " << p2.getAge() << '\n';
+}
+
 int main(int argc, char** argv) {
     text_t hello = "hello, world";
     std::cout << hello << std::endl;
@@ -348,6 +357,8 @@ int main(int argc, char** argv) {
     [&]() {
         std::cout << "Captured by reference!" << '\n';
     }();
+
+    play_with_class();
 
     return 0;
 }
