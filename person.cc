@@ -22,3 +22,11 @@ void Person::setAge(int age) {
     this->age = age;
 }
 
+void Person::printAddress() {
+    std::cout << "Address of this object: " << this << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& os, const Person& person) {
+    os << "Person(Name: " << person.getName() << ", Age: " << person.getAge() << ")";
+    return os;
+}

@@ -266,6 +266,7 @@ void play_with_class() {
 
     std::cout << "Person 1: " << p1.getName() << ", Age: " << p1.getAge() << '\n';
     std::cout << "Person 2: " << p2.getName() << ", Age: " << p2.getAge() << '\n';
+    std::cout << p1 << '\n'; // Using overloaded operator<< from Person class
 
     // Heap allocation
     Person* p3 = new Person("Alice", 28);
