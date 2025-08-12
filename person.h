@@ -15,6 +15,7 @@ public:
     void setName(const std::string& name);
     void setAge(int age);
 
+    virtual void greet() const;
     void printAddress();
 private:
     std::string name;

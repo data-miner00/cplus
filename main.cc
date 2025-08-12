@@ -6,6 +6,7 @@
 #include <cctype>
 #include "bubble_sort.h"
 #include "person.h"
+#include "normal.h"
 
 typedef std::string text_t;
 using number_t = int;
@@ -263,10 +264,14 @@ void play_with_class() {
     // Stack allocation
     Person p1("John", 30);
     Person p2{ "Jane", 25 };
+    Normal n1("Bob", 40, "123 Avenue St");
 
     std::cout << "Person 1: " << p1.getName() << ", Age: " << p1.getAge() << '\n';
     std::cout << "Person 2: " << p2.getName() << ", Age: " << p2.getAge() << '\n';
     std::cout << p1 << '\n'; // Using overloaded operator<< from Person class
+
+    p1.greet();
+    n1.greet();
 
     // Heap allocation
     Person* p3 = new Person("Alice", 28);

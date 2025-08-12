@@ -30,3 +30,7 @@ std::ostream& operator<<(std::ostream& os, const Person& person) {
     os << "Person(Name: " << person.getName() << ", Age: " << person.getAge() << ")";
     return os;
 }
+
+void Person::greet() const {
+    std::cout << "Hello, my name is " << name << " and I am " << age << " years old." << std::endl;
+}
