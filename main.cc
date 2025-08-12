@@ -260,11 +260,19 @@ void cpp_string() {
 }
 
 void play_with_class() {
+    // Stack allocation
     Person p1("John", 30);
     Person p2{ "Jane", 25 };
 
     std::cout << "Person 1: " << p1.getName() << ", Age: " << p1.getAge() << '\n';
     std::cout << "Person 2: " << p2.getName() << ", Age: " << p2.getAge() << '\n';
+
+    // Heap allocation
+    Person* p3 = new Person("Alice", 28);
+    std::cout << "Person 2: " << (*p3).getName() << ", Age: " << (*p3).getAge() << '\n'; // Using dereference
+    std::cout << "Person 2: " << p3->getName() << ", Age: " << p3->getAge() << '\n'; // Using arrow operator
+
+    delete p3;
 }
 
 int main(int argc, char** argv) {
