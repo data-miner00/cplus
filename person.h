@@ -17,6 +17,8 @@ public:
 
     virtual void greet() const;
     void printAddress();
+protected:
+    bool isRich;
 private:
     std::string name;
     int age;
