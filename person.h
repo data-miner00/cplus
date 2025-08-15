@@ -8,6 +8,7 @@ public:
     Person();
     Person(const std::string& name, int age);
     ~Person();
+    Person(const Person& other); // copy constructor
 
     std::string getName() const;
     int getAge() const;

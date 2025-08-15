@@ -6,6 +6,10 @@ Person::Person(const std::string& name, int age) : name(name), age(age) {}
 
 Person::~Person() = default;
 
+Person::Person(const Person& other) : name(other.name), age(other.age), isRich(other.isRich) {
+    std::cout << "Copy constructor called for " << name << std::endl;
+}
+
 std::string Person::getName() const {
     return name;
 }
