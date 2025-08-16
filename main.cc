@@ -282,6 +282,16 @@ void play_with_class() {
     std::cout << "Person 2: " << p3->getName() << ", Age: " << p3->getAge() << '\n'; // Using arrow operator
 
     delete p3;
+
+    // Dynamic cast
+    Person* p4 = new Normal("Charlie", 35, "456 Street Rd");
+    Normal* n2 = dynamic_cast<Normal*>(p4); // Using pointer
+
+    if (n2) {
+        std::cout << "Dynamic cast successful: " << n2->getName() << ", Age: " << n2->getAge() << '\n';
+    } else {
+        std::cout << "Dynamic cast failed." << '\n';
+    }
 }
 
 int main(int argc, char** argv) {

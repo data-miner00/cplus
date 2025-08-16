@@ -3,6 +3,7 @@
 
 class Abnormal : protected Person { // public members in Person are now protected
 public:
+    using Person::Person; // Inherit constructors from Person
     Abnormal(const std::string& name, int age, const std::string& condition)
         : Person(name, age), condition(condition) {}
 
