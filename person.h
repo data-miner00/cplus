@@ -18,6 +18,7 @@ public:
 
     virtual void greet() const;
     void printAddress();
+    void operator () (int add_age);
 protected:
     bool isRich;
 private:

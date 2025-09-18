@@ -38,3 +38,7 @@ std::ostream& operator<<(std::ostream& os, const Person& person) {
 void Person::greet() const {
     std::cout << "Hello, my name is " << name << " and I am " << age << " years old." << std::endl;
 }
+
+void Person::operator()(int add_age) {
+    age += add_age;
+}

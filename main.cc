@@ -1,9 +1,12 @@
+#include <cstdio>
 #include <ios>
 #include <iostream>
 #include <cstdlib>
+#include <stdio.h>
 #include <string>
 #include <limits>
 #include <cctype>
+#include <memory>
 #include "bubble_sort.h"
 #include "person.h"
 #include "normal.h"
@@ -268,6 +271,8 @@ void play_with_class() {
     Normal n1("Bob", 40, "123 Avenue St");
     Abnormal a1("Alice", 43, "Condition X");
 
+    p1(1);
+
     std::cout << "Person 1: " << p1.getName() << ", Age: " << p1.getAge() << '\n';
     std::cout << "Person 2: " << p2.getName() << ", Age: " << p2.getAge() << '\n';
     std::cout << p1 << '\n'; // Using overloaded operator<< from Person class
@@ -292,6 +297,20 @@ void play_with_class() {
     } else {
         std::cout << "Dynamic cast failed." << '\n';
     }
+}
+
+void playing_smart_pointers() {
+    std::unique_ptr<Person> up1 = std::make_unique<Person>("Diana", 29);
+    std::unique_ptr<Person> up2(new Person("Eve", 32));
+    std::shared_ptr<Person> sp1 = std::make_shared<Person>("Frank", 45);
+    std::shared_ptr<Person> sp2 = sp1; // shared ownership
+
+    up1->greet();
+    up2->greet();
+    sp1->greet();
+    sp2->greet();
+
+    // Deallocate up1, up2, sp1, sp2 automatically
 }
 
 int main(int argc, char** argv) {
@@ -386,6 +405,37 @@ int main(int argc, char** argv) {
     }();
 
     play_with_class();
+
+    int * myp;
+    try {
+        myp = new int[1000];
+    } catch (...) {
+        std::cerr << "Failed to allocate memory\n";
+    }
+
+    delete [] myp;
+
+    if (typeid(int) == typeid(myp)) {
+        std::cout << "They are same";
+    }
+
+    playing_smart_pointers();
+
+    const int maxbuf = 2000;
+    char buf[maxbuf];
+    const char * filename = "original.txt";
+    FILE * fwrite = fopen(filename, "w");
+    for (int i = 0; i < 10; ++i)
+        fputs("Lorem ipsum dolor sit amet\n", fwrite);
+    fclose(fwrite);
+    FILE * file = fopen(filename, "r");
+    while (fgets(buf, maxbuf, file)) {
+        std::cout << buf;
+        fputs(buf, stdout);
+    }
+    fputs("Hello", file);
+    fclose(file);
+    remove(filename);
 
     return 0;
 }
