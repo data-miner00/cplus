@@ -437,5 +437,12 @@ int main(int argc, char** argv) {
     fclose(file);
     remove(filename);
 
+    // Predefined symbolic constants
+    printf("\n");
+    printf("%i\n", __LINE__);
+    printf("%s\n", __FILE__);
+    printf("%s\n", __DATE__);
+    printf("%s\n", __TIME__);
+
     return 0;
 }
