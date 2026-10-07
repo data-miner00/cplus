@@ -8,6 +8,8 @@
 #include <limits>
 #include <cctype>
 #include <memory>
+#include <vector>
+#include <algorithm>
 #include "bubble_sort.h"
 #include "person.h"
 #include "normal.h"
@@ -311,6 +313,32 @@ void playing_smart_pointers() {
     // Deallocate up1, up2, sp1, sp2 automatically
 }
 
+void playing_algorithms() {
+    // Find
+    std::vector vec = { 1, 2, 3 };
+    int const target = 2;
+
+    int twos = std::count(vec.begin(), vec.end(), target);
+    twos = std::count(begin(vec), end(vec), target);
+    twos = std::count(rbegin(vec), rend(vec), target);
+    // twos = std::ranges::count(vec, target); C++20
+    
+    // Methods
+    bool allof = all_of(begin(vec), end(vec),
+            [](auto elem) { return elem % 2 != 0; });
+    bool noneof = none_of(begin(vec), end(vec),
+            [](auto elem) { return elem % 2 != 0; });
+    bool anyof = any_of(begin(vec), end(vec),
+            [](auto elem) { return elem % 2 != 0; });
+
+    // Sort
+    sort(begin(vec), end(vec)); // ascending order
+    sort(begin(vec), end(vec),
+            [](int elem1, int elem2) { return elem1 > elem2; });
+    sort(begin(vec), end(vec),
+            [](int elem1, int elem2) { return elem1 < elem2; });
+}
+
 int main(int argc, char** argv) {
     text_t hello = "hello, world";
     std::cout << hello << std::endl;
@@ -441,6 +469,8 @@ int main(int argc, char** argv) {
     printf("%s\n", __FILE__);
     printf("%s\n", __DATE__);
     printf("%s\n", __TIME__);
+
+    playing_algorithms();
 
     return 0;
 }
