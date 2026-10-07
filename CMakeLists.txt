@@ -10,8 +10,8 @@ project(
 
 set(AUTHOR_NAME shaun)
 
-# Enabling C++11 features
-set(CMAKE_CXX_STANDARD 11)
+# Enabling C++17 features
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
 

@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstring>
 #include <ios>
 #include <iostream>
 #include <cstdlib>
@@ -66,12 +67,9 @@ constexpr int get_value() {
     return 42;
 }
 
-/*
-Need C++ 17
 std::string_view getSelf(std::string_view value) {
     return value;
 }
-*/
 
 void play_with_limits() {
     std::cout << "int min: " << std::numeric_limits<int>::min() << '\n';
@@ -207,11 +205,11 @@ void cstrings() {
 
     // Using strcpy to copy a C-style string
     char buffer[50];
-    strcpy_s(buffer, cstr);
+    std::strcpy(buffer, cstr);
     std::cout << "Copied C-style string: " << buffer << '\n';
 
     // Using strcat to concatenate C-style strings
-    strcat_s(buffer, " How are you?");
+    std::strcat(buffer, " How are you?");
     std::cout << "Concatenated C-style string: " << buffer << '\n';
 
     // Count occurrence of character
@@ -237,7 +235,7 @@ void cstrings() {
     char dest[50] = "Hello, ";
     char src[50] = "World!";
 
-    std::cout << strcat_s(dest, src) << '\n';
+    std::cout << std::strcat(dest, src) << '\n';
     std::cout << "Length of concatenated string: " << std::strlen(dest) << '\n';
 }
 
