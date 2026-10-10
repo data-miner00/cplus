@@ -337,6 +337,19 @@ void playing_algorithms() {
             [](int elem1, int elem2) { return elem1 > elem2; });
     sort(begin(vec), end(vec),
             [](int elem1, int elem2) { return elem1 < elem2; });
+
+    bool isSorted = is_sorted(begin(vec), end(vec)); // is sorted in ascending order?
+    isSorted = is_sorted(begin(vec), end(vec),
+            [](int elem1, int elem2) { return elem1 < elem2; });
+
+    // Finding values in a sorted vector
+    int high = *(std::max_element(begin(vec), end(vec)));
+    int low = *(std::min_element(begin(vec), end(vec)));
+    high = *begin(vec);
+    low = *(end(vec) - 1);
+
+    int positive = *std::upper_bound(begin(vec), end(vec), 0);
+    int zero_or_positive = *std::lower_bound(begin(vec), end(vec), 0);
 }
 
 int main(int argc, char** argv) {
